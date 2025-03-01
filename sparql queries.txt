@@ -1,0 +1,28 @@
+# retrieve all tools used in the coffee ceremony
+SELECT ?artifact ?class (STR(?name) AS ?plainName) (STR(?description) AS ?plainDescriptiion )
+	WHERE {  ?artifact rdf:type ?class .
+		?class rdfs:subClassOf* :Artifact . 
+	                   ?artifact :hasName ?name .
+	                   ?artifact :hasDescription ?description .
+ }
+#retrieve all foods served with the coffee ceremony
+SELECT ?food (STR(?description) AS ?plainDescription)
+	WHERE{
+		:Coffee_ceremony :servedWith ?food .
+		?food :hasDescription ?description .
+#retrieve what artifact is used to which step
+SELECT (STR(?artifactname) AS ?artifact_name) (STR(?stepname) AS ?step_name) (STR(?description) AS ?plainDescription)
+WHERE{
+?artifact rdf:type :Artifact .
+?artifact :usedInStep ?Step  .
+?artifact :hasName ?artifactname .
+?artifact :hasDescription ?description . 
+?Step :hasName ?stepname .
+}
+# retrieve persons who perfrom the ceremony
+SELECT (STR(?name) AS ?pname) 
+WHERE {
+?culturalPractice rdf:type :culturalPractice .
+?culturalPractice :performsRole ?CoffeeMaker .
+?CoffeeMaker :hasName ?name .
+}

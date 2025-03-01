@@ -1,0 +1,286 @@
+@prefix : <http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/> .
+
+<http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/hasStep
+:hasStep rdf:type owl:ObjectProperty ;
+         rdfs:domain :culturalPractice ;
+         rdfs:range :Step ;
+         rdfs:comment "steps that follow when making a coffee" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/involvesArtifact
+:involvesArtifact rdf:type owl:ObjectProperty ;
+                  rdfs:domain :culturalPractice ;
+                  rdfs:range :Artifact ;
+                  rdfs:comment "tools or artifacts that are used when making coffee" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/originatesFrom
+:originatesFrom rdf:type owl:ObjectProperty ;
+                rdfs:domain :culturalPractice ;
+                rdfs:range :Region ;
+                rdfs:comment "region where coffee originated from" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/performsRole
+:performsRole rdf:type owl:ObjectProperty ;
+              rdfs:domain :Person ;
+              rdfs:range :culturalPractice ;
+              rdfs:comment "the person who performs the ceremony" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/servedBy
+:servedBy rdf:type owl:ObjectProperty ;
+          rdfs:domain :culturalPractice ;
+          rdfs:range :CoffeeMaker .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/servedWith
+:servedWith rdf:type owl:ObjectProperty ;
+            rdfs:domain :culturalPractice ;
+            rdfs:range :Food ;
+            rdfs:comment "what kind of foods/snacks are served with coffee" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/usedInStep
+:usedInStep rdf:type owl:ObjectProperty ;
+            rdfs:domain :Artifact ;
+            rdfs:range :Step ;
+            rdfs:comment "what artifact is used for the steps when making a coffee" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/usesArtifact
+:usesArtifact rdf:type owl:ObjectProperty ;
+              rdfs:domain :CoffeeMaker ;
+              rdfs:range :Artifact .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/hasDescription
+:hasDescription rdf:type owl:DatatypeProperty ;
+                rdfs:domain owl:Thing ;
+                rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/hasName
+:hasName rdf:type owl:DatatypeProperty ;
+         rdfs:domain owl:Thing ;
+         rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/Artifact
+:Artifact rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/CoffeeMaker
+:CoffeeMaker rdf:type owl:Class ;
+             rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/DecorativeArtifact
+:DecorativeArtifact rdf:type owl:Class ;
+                    rdfs:subClassOf :Artifact .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/Food
+:Food rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/Person
+:Person rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/Region
+:Region rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/Snack
+:Snack rdf:type owl:Class ;
+       rdfs:subClassOf :Food .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/Step
+:Step rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/culturalPractice
+:culturalPractice rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/Coffee_ceremony
+:Coffee_ceremony rdf:type owl:NamedIndividual ,
+                          :culturalPractice ;
+                 :hasStep :brewing ,
+                          :roasting ,
+                          :serving ;
+                 :involvesArtifact :CupofCoffee ,
+                                   :grass ,
+                                   :incence_burner ,
+                                   :jebena ,
+                                   :kesel_mandeja ,
+                                   :rekebot ,
+                                   :roastingpan ;
+                 :originatesFrom :sidama ;
+                 :performsRole :yonatan ,
+                               :Girma ;
+                 :servedBy :yonatan ,
+                           :Girma ;
+                 :servedWith :dabo ,
+                             :fendisha ,
+                             :kolo ;
+                 :hasDescription "A traditional Ethiopian cultural practice of preparing and serving coffee, fostering community and connection." ;
+                 :hasName "Coffee Ceremony" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/CupofCoffee
+:CupofCoffee rdf:type owl:NamedIndividual ,
+                      :Artifact ;
+             :usedInStep :serving ;
+             :hasDescription "a pot used to drink the coffee" ;
+             :hasName "cupofcoffee" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/brewing
+:brewing rdf:type owl:NamedIndividual ,
+                  :Step ;
+         :hasDescription "boiling the coffee in the jebena" ;
+         :hasName "brewing" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/coffee_ceremony
+:coffee_ceremony rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/dabo
+:dabo rdf:type owl:NamedIndividual ,
+               :Snack ;
+      :hasDescription "traditional ethiopian bread served with coffee." ;
+      :hasName "dabo" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/fendisha
+:fendisha rdf:type owl:NamedIndividual ,
+                   :Snack ;
+          :hasDescription "popcorns served with coffee" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/grass
+:grass rdf:type owl:NamedIndividual ,
+                :DecorativeArtifact ;
+       :hasDescription "green grass spread on the floor to symbolize hospitality" ;
+       :hasName "grass" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/incence_burner
+:incence_burner rdf:type owl:NamedIndividual ,
+                         :DecorativeArtifact ;
+                :hasDescription "used to burn incense during the ceremony, adding fragrance" ;
+                :hasName "incense_burner" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/jebena
+:jebena rdf:type owl:NamedIndividual ,
+                 :Artifact ;
+        :usedInStep :brewing ;
+        :hasDescription "a traditional ethiopian coffee pot used to brew coffee." ;
+        :hasName "jebena" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/kesel_mandeja
+:kesel_mandeja rdf:type owl:NamedIndividual ,
+                        :Artifact ;
+               :usedInStep :brewing ,
+                           :roasting ;
+               :hasDescription "a stove like tool used to boil/brew  the coffee" ;
+               :hasName "kesel_mandeja" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/kolo
+:kolo rdf:type owl:NamedIndividual ,
+               :Snack ;
+      :hasDescription "kolo" ,
+                      "roasted barley or grains served as a snack" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/yonatan
+:yonatan rdf:type owl:NamedIndividual ,
+                :CoffeeMaker ;
+       owl:sameAs :Girma ;
+       :usesArtifact :CupofCoffee ,
+                     :jebena ,
+                     :kesel_mandeja ,
+                     :rekebot ,
+                     :roastingpan ;
+       :hasDescription "a person who prepares and performs the traditional coffee ceremony" ;
+       :hasName "yonatan" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/Girma
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/Girma
+:Girma rdf:type owl:NamedIndividual ,
+                :CoffeeMaker ;
+       :hasDescription "a person who prepares and performs the traditional coffee ceremony" ;
+       :hasName "Girma" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/rekebot
+:rekebot rdf:type owl:NamedIndividual ,
+                  :Artifact ;
+         :usedInStep :serving ;
+         :hasDescription "a table like tool used to put the coffee cups" ;
+         :hasName "rekebot" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/roasting
+:roasting rdf:type owl:NamedIndividual ,
+                   :Step ;
+          :hasDescription "roasting green coffee beans over heat" ;
+          :hasName "roasting" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/roastingpan
+:roastingpan rdf:type owl:NamedIndividual ,
+                      :Artifact ;
+             :usedInStep :roasting ;
+             :hasDescription "the pan used for roasting coffee beans" ;
+             :hasName "roastingpan" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/serving
+:serving rdf:type owl:NamedIndividual ,
+                  :Step ;
+         :hasDescription "pouring and offering coffee in small cups" ;
+         :hasName "serving" .
+
+
+###  http://www.semanticweb.org/yonatan/ontologies/2025/0/CoffeeCeremony/sidama
+:sidama rdf:type owl:NamedIndividual ,
+                 :Region ;
+        :hasDescription "a region in ethiopian that the coffee ceremony originated from" ;
+        :hasName "Sidama" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
